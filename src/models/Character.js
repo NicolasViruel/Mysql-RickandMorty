@@ -1,33 +1,38 @@
-const {Datatypes} = require("sequelize");
+const {DataTypes} = require("sequelize");
 
 
 
 
-module.exports = (sequelize) =>{
+module.exports = (sequelize) =>{ //tenemos una funcion que recibe Sequelize y define un modelo
     sequelize.define('Character', {
         id:{
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             allownull: false,
-            primarykey: true,
+            primaryKey: true
         },
         name:{
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allownull: false,
         },
         status:{
-            type: Datatypes.ENUM("Alive", "Dead" , "Unknown") //enum son valores que se van a poder guardar
+            type: DataTypes.ENUM("Alive", "Dead" , "Unknown"), //enum son valores que se van a poder guardar
+            allownull: false,
         },
         species:{
-            type: Datatypes
+            type: DataTypes.STRING,
+            allownull: false,
         },
         gender:{
-            type: Datatypes
+            type: DataTypes.ENUM("Female", "Male", "Genderless", "Unknown"),
+            allownull: false,
         },
         origin:{
-            type: Datatypes
+            type: DataTypes.STRING,
+            allownull: false,
         },
         image:{
-            type: Datatypes
+            type: DataTypes.STRING,
+            allownull: false,
         },
 
     } , {timestamps: false});

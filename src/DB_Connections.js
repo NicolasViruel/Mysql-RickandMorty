@@ -1,16 +1,20 @@
 require('dotenv').config();
-const { Sequelize } = require("sequelize");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
-const {User} = require("./models/User")
-const {Character} = require("./models/Character")
+
+//----- Sequelize
+const { Sequelize } = require("sequelize");
+const defineModelUser = require("./models/User");
+const defineModelCharacter = require("./models/Character");
 
 const sequelize = new Sequelize(
     ` mysql://${"root"}:${"pichones1"}@${"localhost"}/rickandmorty`,
     //URL
-    { loadding: false, native: false, host: DB_HOST, dialect:"mysql"}
+    { loadding: false, native: false, host: DB_HOST, dialect:"mysql", logging: false }
 );
 
 // async function testConnection(){
+
+
 //     try {
 //         await sequelize.authenticate()
 //         console.log("Conexion a la DB ok :D");
@@ -21,10 +25,21 @@ const sequelize = new Sequelize(
 
 // testConnection();
 
-User(sequelize); //traemos la instancia de sequelize
+
+
+
+
+defineModelUser(sequelize)
+defineModelCharacter(sequelize)
+
+//traemos la instancia de sequelize
+const {User , Character }= sequelize.models;
+//generamos la relacion (muchos a muchos) generando una tabla intermedia
+User.belongsToMany(Character, {through: "user_favorite" });
+Character.belongsToMany(User, {through: "user_favorite" });
 
 module.exports={
-    //User,
-    //Favorite,
+    User,
+    Character,
     conn: sequelize,
 }

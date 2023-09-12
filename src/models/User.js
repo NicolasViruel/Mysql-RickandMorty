@@ -1,4 +1,4 @@
-const {Datatypes} = require("sequelize");
+const {DataTypes} = require("sequelize");
 
 
 
@@ -6,19 +6,19 @@ const {Datatypes} = require("sequelize");
 module.exports = (sequelize) =>{
     sequelize.define('User', {
         id:{
-            type: Datatypes.INTEGER, //tipo de dato hexadecimales
+            type: DataTypes.INTEGER,
             primaryKey: true,
             allowNull: false,
             autoincrement: true
         },
         email:{
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true,
             isMail: true,
         },
         password:{
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         }
     } , {timestamps: false});
