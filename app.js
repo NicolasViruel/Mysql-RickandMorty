@@ -3,7 +3,7 @@ const cors = require("cors");
 
 //Router
 // const characterRouter = require("./src/routes/character");
-// const userRouter = require("./src/routes/user");
+const userRouter = require("./src/routes/user");
 // const favoriteRouter = require("./src/routes/favorite");
 //Express
 const express = require("express");
@@ -18,7 +18,7 @@ server.use(cors()); //Habilito las CORS para que cualquier origen pueda enviar s
 
 //Routers --> Que rutas voy a utilizar
 // server.use("/character", characterRouter);
-// server.use("/user" , userRouter);
+server.use("/user" , userRouter);
 // server.use("/favorites" , favoriteRouter);
 
 server.get("/health-check" , (req, res) =>{

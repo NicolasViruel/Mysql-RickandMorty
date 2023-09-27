@@ -12,28 +12,12 @@ const sequelize = new Sequelize(
     { loadding: false, native: false, host: DB_HOST, dialect:"mysql", logging: false }
 );
 
-// async function testConnection(){
-
-
-//     try {
-//         await sequelize.authenticate()
-//         console.log("Conexion a la DB ok :D");
-//     } catch (error) {
-//         console.log("No se pude conectar :(");
-//     }
-// }
-
-// testConnection();
-
-
-
-
 
 defineModelUser(sequelize)
 defineModelCharacter(sequelize)
 
 //traemos la instancia de sequelize
-const {User , Character }= sequelize.models;
+const { User , Character }= sequelize.models;
 //generamos la relacion (muchos a muchos) generando una tabla intermedia
 User.belongsToMany(Character, {through: "user_favorite" });
 Character.belongsToMany(User, {through: "user_favorite" });

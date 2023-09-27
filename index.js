@@ -13,7 +13,7 @@ const server = require("./app");
 
 // ---- Base de datos ==> Servidor
 conn
-  .sync({ alter: true })
+  .sync({ force: false })
   .then((value) => {
     server.listen(PORT, () => {
       console.log("Server & DDBB Running 🛴");

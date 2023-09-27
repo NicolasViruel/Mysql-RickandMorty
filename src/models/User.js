@@ -6,10 +6,10 @@ const {DataTypes} = require("sequelize");
 module.exports = (sequelize) =>{
     sequelize.define('User', {
         id:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID, //tipo de dato Hexadecimal
             primaryKey: true,
             allowNull: false,
-            autoincrement: true
+            defaultValue: DataTypes.UUIDV4 //Genero el Hexadecimal
         },
         email:{
             type: DataTypes.STRING,
